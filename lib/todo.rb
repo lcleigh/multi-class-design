@@ -1,14 +1,15 @@
 class ToDo
     def initialize(task)
-      @task = task
-  
+        @task = task
+        @complete = false
     end
     def task
-      # returns the task as a string
+        return @task
     end
     def mark_done!
-  
+        @complete = true
     end
     def done?
+        @complete
     end
   end

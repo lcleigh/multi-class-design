@@ -5,23 +5,31 @@ class DiaryEntry
       @phonenumbers = []
     end
     
+    def entry
+        return "#{@date}: #{@contents}"
+    end
     def date
-      # returns date as......
+        return @date
     end
   
     def contents
-      #return contents as string
+        return @contents
     end
     
-    def word_count  #returns the number of words as an integer
+    def word_count  
+        word_count = @contents.split(/[ !?,.&()]/).count
+        return word_count
     end
     
-    def reading_time(wpm) # returns the reading time in minutes to the nearest integer
+    def reading_time(wpm)
+        word_count = @contents.split(/[ !?,.&()]/).count
+        return (word_count.to_f / wpm).round
     end
   
     def extract_numbers
-      # gets the numbers from the contents and adds them to @phonenumbers
-      # return @phonenumbers
+        @contents.scan(/[0-9]{11}/).each do |number|
+        @phonenumbers << number
+        end
     end
     
   end

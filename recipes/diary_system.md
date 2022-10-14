@@ -29,7 +29,7 @@ focus on the details you see as important, not everything. The diagram below
 uses asciiflow.com but you could also use excalidraw.com, draw.io, or miro.com_
 
 
-<img align = "middle" src="diary_system.drawio.svg" />
+<img src="diary_system.drawio.svg" />
 
 
 _Also design the interface of each class in more detail._
@@ -114,7 +114,7 @@ _Create examples of the classes being used together in different situations and
 combinations that reflect the ways in which the system will be used._
 
 ```ruby
-1)
+X1)
 diary = Diary.new
 diary_entry_1 = DiaryEntry.new("12/10/2022", "Today was a good day.")
 diary_entry_2 = DiaryEntry.new("13/10/2022", "Today I ate some cheese, it was tasty.")
@@ -122,7 +122,7 @@ diary.add_to_diary(diary_entry_1)
 diary.add_to_diary(diary_entry_2)
 expect(diary.list_all_entries).to eq [diary_entry_1, diary_entry_2]
 
-2)
+X2)
 diary = Diary.new
 diary_entry_1 = DiaryEntry.new("12/10/2022", "Today was a good day.")
 diary_entry_2 = DiaryEntry.new("13/10/2022", "Today I ate some cheese, it was tasty.")
@@ -130,7 +130,7 @@ diary.add_to_diary(diary_entry_1)
 diary.add_to_diary(diary_entry_2)
 expect(diary.read_past_entry("12/10/2022")).to eq "Today was a good day."
 
-3) 
+X3) 
 diary = Diary.new
 diary_entry_1 = DiaryEntry.new("12/10/2022", "Today was a good day.")
 diary_entry_2 = DiaryEntry.new("13/10/2022", "Today I ate some cheese, it was tasty.")
@@ -138,7 +138,7 @@ diary.add_to_diary(diary_entry_1)
 diary.add_to_diary(diary_entry_2)
 expect(diary.read_past_entry("09/10/2022")).to eq "There is no entry for this day."
 
-4)
+X4)
 diary = Diary.new
 diary_entry_1 = DiaryEntry.new("12/10/2022", "Today was a good day.")
 diary_entry_2 = DiaryEntry.new("13/10/2022", "Today I ate some cheese, it was tasty.")
@@ -148,7 +148,7 @@ diary.add_to_diary(diary_entry_1)
 diary.add_to_diary(diary_entry_2)
 expect(diary.select_best_entry(2, 4)).to eq diary_entry_2
 
-5)
+X5)
 diary = Diary.new
 to_do_1 = ToDo.new("wash up")
 to_do_2 = ToDo.new("mop kitchen")
@@ -156,7 +156,7 @@ diary.add_todo(to_do_1)
 diary.add_todo(to_do_2)
 expect(diary.todo_incomplete).to eq [to_do_1, to_do_2]
 
-6)
+X6)
 diary = Diary.new
 to_do_1 = ToDo.new("wash up")
 to_do_2 = ToDo.new("mop kitchen")
@@ -164,17 +164,9 @@ to_do_1.mark_done!
 diary.add_todo(to_do_1)
 diary.add_todo(to_do_2)
 expect(diary.todo_incomplete).to eq [to_do_2]
-
-7)
-diary = Diary.new
-to_do_1 = ToDo.new("wash up")
-to_do_2 = ToDo.new("mop kitchen")
-to_do_1.mark_done!
-diary.add_todo(to_do_1)
-diary.add_todo(to_do_2)
 expect(diary.todo_complete).to eq [to_do_1]
 
-8)
+X7)
 diary = Diary.new
 diary_entry = DiaryEntry.new("11/10/2022", "Sarah: 07544444444")
 diary_entry.extract_numbers
@@ -197,56 +189,57 @@ a more granular level of detail._
 
 ```ruby
 Diary:
-1)
+X1)
 diary = Diary.new
 expect(diary.list_all_entries).to eq "You have no diary entries."
 
-2)
+X2)
 diary = Diary.new
-expect(diary.past_diary_entries("12/09/2020")).to eq "You have no diary entries."
+expect(diary.read_past_entries("12/09/2020")).to eq "You have no diary entries."
 
-3)
+X3)
 diary = Diary.new
 expect(diary.select_best_entry(2, 4)).to eq "You have no diary entries."
 
-4) diary = Diary.new
+X4) 
+diary = Diary.new
 expect(diary.todo_incomplete).to eq "You have nothing in your todo list. Go relax."
 
-5) diary = Diary.new
+X5) 
+diary = Diary.new
 expect(diary.todo_complete).to eq "You have not completed any tasks because you haven't added anything to your todo list."
 
 DiaryEntry:
-1)
+X1)
 diary_entry = DiaryEntry.new("12/10/2022", "Today was a good day.")
 expect(diary_entry.entry).to eq "12/10/2022: Today was a good day."
-2)
+X2)
 diary_entry = DiaryEntry.new("12/10/2022", "Today was a good day.")
 expect(diary_entry.word_count).to eq 5
-3)
+X3)
 diary_entry = DiaryEntry.new("12/10/2022", "Today was a good day.")
-expect(diary_entry.reading_time(2) = 3
+expect(diary_entry.reading_time(2)) = 3
 
-4) 
+X4) 
 diary_entry = DiaryEntry.new("12/10/2022", "Sarah: 07544444444.")
 expect(diary_entry.extract_numbers).to eq ["07544444444"]
 
-5)
+X5)
 diary_entry = DiaryEntry.new("11/10/2022", "Sarah: 07544444444, Mike: 01526333333")
 expect(diary_entry.extract_numbers).to eq ["07544444444", "01526333333"]
 
 ToDo:
-1)
+X1)
 to_do = ToDo.new("wash up")
 expect(to_do.task).to eq "wash up"
 
-2)
+X2)
 to_do = ToDo.new("wash up")
+expect(to_do.done?).to eq false
 to_do.mark_done!
 expect(to_do.done?).to eq true
 
-3)
-to_do = ToDo.new("wash up")
-expect(to_do.done?).to eq false
+
 
 
 ```
